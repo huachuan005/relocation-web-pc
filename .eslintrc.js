@@ -25,7 +25,9 @@ module.exports = {
     'no-unused-expressions': 0,
     'space-before-function-paren': 0,
     // 三元表达式
-    'no-unneeded-ternary': 0
+    'no-unneeded-ternary': 0,
+    // {} 花括号需要空格
+    'object-curly-spacing': 0
   },
   parserOptions: {
     parser: 'babel-eslint'

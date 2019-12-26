@@ -13,9 +13,9 @@
     "babel-polyfill": "^6.26.0",
     "core-js": "^2.6.5",
     "element-ui": "^2.4.5",
-    "html2canvas": "^1.0.0-rc.3",
     "vue": "^2.6.10",
     "vue-router": "^3.0.3",
+    "vue-template-compiler": "^2.5.21",
     "vuex": "^3.0.1",
     "vue-cli-plugin-axios": "0.0.4"
   },
@@ -27,10 +27,8 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
-    "compression-webpack-plugin": "^3.0.0",
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
-    "vue-cli-plugin-element": "^1.0.1",
-    "vue-template-compiler": "^2.5.21"
+    "vue-cli-plugin-element": "^1.0.1"
   }
 }
