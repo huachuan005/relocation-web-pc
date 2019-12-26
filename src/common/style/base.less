@@ -1,0 +1,19 @@
+@import "./variable";
+
+body, html {
+  line-height: 1;
+  font-family: "Microsoft YaHei", "微软雅黑", 'Helvetica', 'Tahoma', 'Arial', 'STXihei', "华文细黑", 'sans-serif';
+  -webkit-tap-highlight-color: transparent;
+  background: @colorBackground;
+  color: @colorText;
+}
+
+// 在浮动元素的父云素上添加class="clearfix"。
+.clearfix:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: " ";
+  clear: both;
+  height: 0;
+}
