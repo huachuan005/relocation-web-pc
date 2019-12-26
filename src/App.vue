@@ -75,7 +75,7 @@ export default {
 #app {
   height: 100%;
   min-width: 1359px;
-  overflow-x: scroll;
+  overflow-x: auto;
   background: #f0f2f2;
 }
 </style>
