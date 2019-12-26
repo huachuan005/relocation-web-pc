@@ -19,9 +19,6 @@ const Serve = {
 let prefix = ''
 let host = window.location.host
 
-console.log(process.env.NODE_ENV)
-console.log(Serve.development)
-console.log(host)
 if (process.env.NODE_ENV === 'development') {
   prefix = Serve.development
 } else {

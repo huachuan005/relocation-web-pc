@@ -1,13 +1,13 @@
-const HelloWorld = () => import('src/components/HelloWorld/HelloWorld')
+const home = () => import('src/views/home/home')
 
 export default [
   {
     path: '/',
-    redirect: '/HelloWorld'
+    redirect: '/home'
   },
   {
-    path: '/HelloWorld',
-    name: 'HelloWorld',
-    component: HelloWorld
+    path: '/home',
+    name: 'home',
+    component: home
   }
 ]

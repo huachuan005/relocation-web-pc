@@ -10,6 +10,7 @@
 import { api, urlNames } from 'src/api'
 import { getWorkLogs, postLogin } from 'src/http/models/example'
 import { getUuid } from 'src/common/js/getUuid'
+import { async } from 'q'
 
 export default {
   name: 'app',
@@ -22,8 +23,9 @@ export default {
   },
   mounted() {
     // test
-    this._postLogin()
-    this._getWorkLogs()
+    // this.testhttp()
+    // this._postLogin()
+    // this._getWorkLogs()
     // this.getPortTest()
     // this.getUserInfo()
   },
@@ -43,6 +45,14 @@ export default {
         window.localStorage.setItem('token', res.access)
         window.localStorage.setItem('refresh', res.refresh)
       })
+    },
+    async testhttp() {
+      let param = {
+        phone_number: '17708512578',
+        password: '123'
+      }
+      const testAwT = await postLogin(param)
+      console.log(testAwT)
     },
     getPortTest() {
       api[urlNames.getPortTest]().then((res) => {
