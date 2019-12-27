@@ -1,10 +1,22 @@
 <template>
-  <div
-    class="home"
-    style="width: 100%; height: 100%;"
-  >
-    <relocation1 :style="{ color: activeColor, width: winW + 'px', height: winH + 'px', top: top + 'px', left: left + 'px'}"></relocation1>
-    <relocation2 :style="{ color: activeColor, width: winW + 'px', height: winH + 'px', top: top + 'px', left: left + 'px'}"></relocation2>
+  <div class="home">
+    <div
+      :style="{ 'transition': 'all 5s ease', 'transform':'translate3d(-'+left+'px, -'+top+'px, 0)'}"
+      class="wrapper"
+    >
+      <transition name="slide-fade">
+        <relocation1
+          :style="{ color: activeColor, width: winW + 'px', height: winH + 'px', top: top + 'px', left: left + 'px'}"
+          v-if="flag === 1"
+        ></relocation1>
+      </transition>
+      <transition name="slide-fade">
+        <relocation2
+          :style="{ color: activeColor, width: winW + 'px', height: winH + 'px', top: top + 'px', left: left + 'px'}"
+          v-if="flag === 2"
+        ></relocation2>
+      </transition>
+    </div>
     <button
       @click="next"
       class="button next-btn"
@@ -27,7 +39,7 @@ export default {
       winH: '',
       activeColor: 'red',
       fontSize: '20',
-      flag: 2,
+      flag: 1,
       top: '',
       left: ''
     }
@@ -45,17 +57,27 @@ export default {
       let left = this.winW
       console.log(top)
       console.log(left)
+      function Random(min, max) {
+        const minus = Math.random() > 0.5 ? 1 : -1
+        return (Math.round(Math.random() * (max - min)) + min) * minus
+      }
+
+      let random = Random(1, 2)
+      // let random = Math.floor(Math.random() * 3) * minus
+      console.log(random)
       if (this.flag === 2) {
         console.log('go 2')
-        this.top = top * this.flag
-        this.left = left * this.flag
+        this.top = top * random
+        this.left = left * random
         this.flag = 1
       } else {
         console.log('go 1')
-        this.top = top * this.flag
-        this.left = left * this.flag
+        this.top = top * random
+        this.left = left * random
         this.flag = 2
       }
+      console.log(this.top)
+      console.log(this.left)
     },
     _getWinWH() {
       // document.documentElement.clientWidth,
@@ -64,6 +86,8 @@ export default {
       let w = document.documentElement.clientWidth // 浏览器宽度
       this.winW = w
       this.winH = h
+      this.top = h
+      this.left = w
       window.localStorage.setItem('winW', w)
       window.localStorage.setItem('winH', h)
     }

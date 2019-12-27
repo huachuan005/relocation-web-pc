@@ -2,11 +2,45 @@
 
 .home {
   position: relative;
-  .relocation1, .relocation2 {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+
+  .wrapper {
     position: absolute;
-    top: 0;
-    left: 0;
+    width: 5000px;
+    height: 5000px;
+
+    .relocation1, .relocation2 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      font-size: 90px;
+      text-align: center;
+    }
+
+    .relocation1 {
+      background-color: forestgreen;
+    }
+
+    .relocation2 {
+      background-color: darkkhaki;
+    }
+
+    .slide-fade-enter-active {
+      transition: all 3s ease;
+    }
+    .slide-fade-leave-active {
+      transition: all 3s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+    .slide-fade-enter, .slide-fade-leave-to
+    /* .slide-fade-leave-active for below version 2.1.8 */ {
+      transform: translateX(10px);
+      opacity: 0;
+    }
+
   }
+  
   .next-btn {
     position: fixed;
     top: 20%;
