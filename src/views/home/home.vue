@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div
-      :style="{ 'transition': 'all 5s ease', 'transform':'translate3d(-'+left+'px, -'+top+'px, 0)'}"
+      :style="{ 'transition': 'all 5s ease', 'transform': `translate3d(${left > 0 ? -left : left*-1}px, ${top > 0 ? -top : top*-1}px, 0)`}"
       class="wrapper"
     >
       <transition name="slide-fade">
@@ -80,8 +80,6 @@ export default {
       console.log(this.left)
     },
     _getWinWH() {
-      // document.documentElement.clientWidth,
-      // document.documentElement.clientHeight
       let h = document.documentElement.clientHeight // 浏览器高度
       let w = document.documentElement.clientWidth // 浏览器宽度
       this.winW = w
