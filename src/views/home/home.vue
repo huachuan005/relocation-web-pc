@@ -18,7 +18,7 @@
       </transition>
     </div>
     <button
-      @click="next"
+      @click="nextTwo"
       class="button next-btn"
     >下一个</button>
   </div>
@@ -41,43 +41,100 @@ export default {
       fontSize: '20',
       flag: 1,
       top: '',
-      left: ''
+      left: '',
+      keyHY: [],
+      page: 1
     }
   },
   created() {
     this.$nextTick(() => {
       this._getWinWH()
+      this.loadXY()
     })
   },
   computed: {},
   watch: {},
   methods: {
     next() {
-      let top = this.winH
-      let left = this.winW
-      console.log(top)
-      console.log(left)
-      function Random(min, max) {
-        const minus = Math.random() > 0.5 ? 1 : -1
-        return (Math.round(Math.random() * (max - min)) + min) * minus
-      }
+      // let top = this.winH
+      // let left = this.winW
+      // console.log(top)
+      // console.log(left)
+      // function Random(min, max) {
+      //   const minus = Math.random() > 0.5 ? 1 : -1
+      //   return (Math.round(Math.random() * (max - min)) + min) * minus
+      // }
 
-      let random = Random(1, 2)
-      // let random = Math.floor(Math.random() * 3) * minus
-      console.log(random)
+      // let random = Random(1, 2)
+      // // let random = Math.floor(Math.random() * 3) * minus
+      // console.log(random)
+      // if (this.flag === 2) {
+      //   console.log('go 2')
+      //   this.top = top * random
+      //   this.left = left * random
+      //   console.log(this.top)
+      //   this.flag = 1
+      // } else {
+      //   console.log('go 1')
+      //   this.top = top * random
+      //   this.left = left * random
+      //   this.flag = 2
+      // }
+      // console.log(this.top)
+      // console.log(this.left)
+    },
+    nextTwo() {
       if (this.flag === 2) {
         console.log('go 2')
-        this.top = top * random
-        this.left = left * random
+        this._goPage()
         this.flag = 1
       } else {
         console.log('go 1')
-        this.top = top * random
-        this.left = left * random
+        this._goPage()
         this.flag = 2
       }
-      console.log(this.top)
+    },
+    loadXY() {
+      // page: 1 //  例如总得8个图，偏移方向不同，但固定
+      const pageNum = 1
+      const keyArr = [
+        // {x: 0, y: 0}
+      ]
+      const winW = this.winW
+      const winH = this.winH
+      for (let i = 0; i < 8; i++) {
+        if (i <= 4) {
+          keyArr.push({
+            x: winW*i,
+            y: winH*i
+          })
+        }
+        if (i > 4) {
+          keyArr.push({
+            x: winW*i,
+            y: winH*-i
+          })
+        }
+      }
+      this.keyHY = keyArr
+      console.log(keyArr)
+    },
+    _goPage() {
+      const keyHY = this.keyHY
+      let page = this.page
+      if (page < 8) {
+        const element = keyHY[page]
+        this.left = element.x
+        this.top = element.y
+        this.page ++
+      } else {
+        this.page = 1
+        const element = keyHY[0]
+        this.left = element.x
+        this.top = element.y
+      }
       console.log(this.left)
+      console.log(this.top)
     },
     _getWinWH() {
       let h = document.documentElement.clientHeight // 浏览器高度
